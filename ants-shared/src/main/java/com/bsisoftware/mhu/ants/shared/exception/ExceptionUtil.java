@@ -11,9 +11,9 @@ public final class ExceptionUtil {
 		return new FatalAntsException(message, cause);
 	}
 
-	public static RemoteAntsException remote(Logger logger, int code, String message) {
+	public static AntsRemoteException remote(Logger logger, int code, String message) {
 		logger.error(Integer.toString(code) + " - " + message);
-		return new RemoteAntsException(code, message);
+		return new AntsRemoteException(code, message);
 	}
 
 }

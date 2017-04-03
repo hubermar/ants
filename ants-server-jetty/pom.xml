@@ -9,14 +9,29 @@
 		<relativePath>../ants-parent</relativePath>
 	</parent>
 
-	<artifactId>server</artifactId>
-	<packaging>war</packaging>
+	<artifactId>jetty</artifactId>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.bsisoftware.mhu.ants</groupId>
 			<artifactId>shared</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bsisoftware.mhu.ants</groupId>
+			<artifactId>server</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-server</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlet</artifactId>
+			<version>${jetty.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.core</groupId>

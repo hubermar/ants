@@ -1,6 +1,5 @@
 package com.bsisoftware.mhu.ants.shared.util;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -11,15 +10,17 @@ import com.bsisoftware.mhu.ants.shared.exception.ExceptionUtil;
 
 public final class StaticConfiguration {
 
+	public static final String SERVER_PORT = "serverPort";
+
 	private static final Logger LOG = LoggerFactory.getLogger(StaticConfiguration.class);
-	private static final String PROP_FILENAME = "/ants.properties";
+	private static final String PROP_FILENAME = "ants.properties";
 	private static final Properties CONFIG = new Properties();
 
 	static {
 		try {
-			InputStream stream = StaticConfiguration.class.getClassLoader().getResourceAsStream(PROP_FILENAME);
+			InputStream stream = ClassLoader.getSystemResourceAsStream(PROP_FILENAME);
 			CONFIG.load(stream);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			throw ExceptionUtil.fatal(LOG, "Failed to load CONFIG from " + PROP_FILENAME, e);
 		}
 	}
@@ -32,10 +33,18 @@ public final class StaticConfiguration {
 		return getOptional(key, defaultValue);
 	}
 
+	public static int getInt(String key) {
+		return Integer.parseInt(getMandatory(key));
+	}
+
+	public static int getInt(String key, int defaultValue) {
+		return Integer.parseInt(getOptional(key, Integer.toString(defaultValue)));
+	}
+	
 	private static String getMandatory(String key) {
 		String value = CONFIG.getProperty(key);
 		if (value == null) {
-			throw ExceptionUtil.fatal(LOG, "Missing mandatory config " + key, null);
+			throw ExceptionUtil.fatal(LOG, "Missing mandatory config [" + key + "]", null);
 		}
 		return value;
 	}

@@ -13,6 +13,13 @@ public final class ConfigurationDTO {
 	@XmlElement(name="value")
 	private String value;
 	
+	private ConfigurationDTO() {}
+	
+	private ConfigurationDTO(String key, String value) {
+		this.key = key;
+		this.value = value;
+	}
+	
 	public String getKey() {
 		return key;
 	}
