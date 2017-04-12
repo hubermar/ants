@@ -9,14 +9,7 @@
 		<relativePath>../ants-parent</relativePath>
 	</parent>
 
-	<artifactId>shared</artifactId>
-	<packaging>jar</packaging>
+	<artifactId>ants-server-war</artifactId>
+	<packaging>war</packaging>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-	</dependencies>
 </project>

@@ -11,6 +11,7 @@ import com.bsisoftware.mhu.ants.shared.exception.ExceptionUtil;
 public final class StaticConfiguration {
 
 	public static final String SERVER_PORT = "serverPort";
+	public static final String FIELD_SIZE = "fieldSize";
 
 	private static final Logger LOG = LoggerFactory.getLogger(StaticConfiguration.class);
 	private static final String PROP_FILENAME = "ants.properties";
@@ -41,6 +42,14 @@ public final class StaticConfiguration {
 		return Integer.parseInt(getOptional(key, Integer.toString(defaultValue)));
 	}
 	
+	public static double getDouble(String key) {
+		return Double.parseDouble(getMandatory(key));
+	}
+
+	public static double getDouble(String key, double defaultValue) {
+		return Double.parseDouble(getOptional(key, Double.toString(defaultValue)));
+	}
+
 	private static String getMandatory(String key) {
 		String value = CONFIG.getProperty(key);
 		if (value == null) {
