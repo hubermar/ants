@@ -1,4 +1,4 @@
-package com.bsisoftware.mhu.ants.server.api;
+package com.bsisoftware.mhu.ants.shared.api.entity;
 
 public abstract class GameObject {
 
@@ -34,10 +34,5 @@ public abstract class GameObject {
 
 	public final int getHeight() {
 		return height;
-	}
-
-	public void moveTo(int x, int y) {
-		this.x = x;
-		this.y = y;
 	}
 }

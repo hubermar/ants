@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import com.bsisoftware.mhu.ants.shared.api.entity.Anthill;
+import com.bsisoftware.mhu.ants.shared.api.entity.GameObject;
 import com.bsisoftware.mhu.ants.shared.api.entity.Landscape;
 import com.bsisoftware.mhu.ants.shared.api.entity.Terrain;
 import com.bsisoftware.mhu.ants.shared.api.entity.Terrain.TerrainType;

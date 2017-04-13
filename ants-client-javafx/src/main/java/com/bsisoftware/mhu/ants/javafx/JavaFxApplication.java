@@ -3,11 +3,10 @@ package com.bsisoftware.mhu.ants.javafx;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bsisoftware.mhu.ants.javafx.rest.RestClient;
+import com.bsisoftware.mhu.ants.server.Server;
 import com.bsisoftware.mhu.ants.shared.api.entity.Landscape;
 import com.bsisoftware.mhu.ants.shared.exception.AntsRemoteException;
 import com.bsisoftware.mhu.ants.shared.util.StaticConfiguration;
-import com.bsisoftware.mhu.ants.shared.util.UriUtil;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -35,9 +34,7 @@ public class JavaFxApplication extends Application {
 			// primaryStage.setFullScreen(true);
 			primaryStage.setTitle("Ants");
 
-			String serverPort = StaticConfiguration.getString(StaticConfiguration.SERVER_PORT);
-			String serverAddress = "http://localhost:" + serverPort + UriUtil.CONTEXT + UriUtil.PREFIX + UriUtil.VERSION;
-			RestClient server = new RestClient(serverAddress, "user", "password");
+			Server server = new Server();
 
 			LOG.info("Preparing stage...");
 

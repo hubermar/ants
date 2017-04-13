@@ -1,4 +1,4 @@
-package com.bsisoftware.mhu.ants.server.api;
+package com.bsisoftware.mhu.ants.shared.api.entity;
 
 public class Anthill extends GameObject {
 

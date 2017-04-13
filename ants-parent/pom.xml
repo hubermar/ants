@@ -16,8 +16,7 @@
 	<modules>
 		<module>../ants-shared</module>
 		<module>../ants-server-core</module>
-		<module>../ants-server-war</module>
-		<module>../ants-server-jetty</module>
+		<module>../ants-server-java</module>
 		<module>../ants-client-javafx</module>
 	</modules>
 

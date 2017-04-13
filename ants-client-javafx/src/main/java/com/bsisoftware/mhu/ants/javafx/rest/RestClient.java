@@ -1,5 +1,7 @@
 package com.bsisoftware.mhu.ants.javafx.rest;
 
+import java.util.List;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Invocation;
@@ -15,11 +17,13 @@ import org.slf4j.LoggerFactory;
 
 import com.bsisoftware.mhu.ants.shared.api.RestAPI;
 import com.bsisoftware.mhu.ants.shared.api.entity.ApiError;
+import com.bsisoftware.mhu.ants.shared.api.entity.GameObject;
 import com.bsisoftware.mhu.ants.shared.api.entity.Landscape;
 import com.bsisoftware.mhu.ants.shared.exception.AntsRemoteException;
 import com.bsisoftware.mhu.ants.shared.exception.ExceptionUtil;
+import com.bsisoftware.mhu.ants.shared.server.IServer;
 
-public class RestClient {
+public class RestClient implements IServer {
 
 	private static final Logger LOG = LoggerFactory.getLogger(RestClient.class);
 
@@ -65,6 +69,12 @@ public class RestClient {
 			}
 			throw ExceptionUtil.remote(LOG, response.getStatus(), response.getStatusInfo().getReasonPhrase());
 		}
+	}
+
+	@Override
+	public List<GameObject> getObjects() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

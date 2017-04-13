@@ -3,8 +3,9 @@ package com.bsisoftware.mhu.ants.javafx;
 import java.util.List;
 
 import com.bsisoftware.mhu.ants.javafx.rest.RestClient;
+import com.bsisoftware.mhu.ants.shared.api.entity.GameObject;
 import com.bsisoftware.mhu.ants.shared.api.entity.Terrain;
-import com.bsisoftware.mhu.ants.shared.util.StaticConfiguration;
+import com.bsisoftware.mhu.ants.shared.server.IServer;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
@@ -13,12 +14,12 @@ import javafx.scene.paint.Color;
 class RenderTimer extends AnimationTimer {
 
 	private final GraphicsContext gc;
-	private final RestClient server;
+	private final IServer server;
 	private final double fieldSize;
 
 	private long lastHandleSecs;
-	
-	public RenderTimer(RestClient server, GraphicsContext gc, double fieldSize) {
+
+	public RenderTimer(IServer server, GraphicsContext gc, double fieldSize) {
 		this.server = server;
 		this.gc = gc;
 		this.fieldSize = fieldSize;
@@ -31,10 +32,18 @@ class RenderTimer extends AnimationTimer {
 			lastHandleSecs = currentSecs;
 			System.out.println(currentSecs);
 			renderTerrains(gc);
+			renderObjects(gc);
 			// renderMen(gc);
 			// renderMousePosition(gc);
 			// renderPlayerPosition(gc);
 		}
+	}
+
+	private void renderObjects(GraphicsContext gc) {
+//		for (GameObject object : server.getObjects()) {
+//			IRenderer renderer = RenderFactory.getRenderer(object);
+//			renderer.render(gc);
+//		}
 	}
 
 	private void renderMousePosition(GraphicsContext gc) {
