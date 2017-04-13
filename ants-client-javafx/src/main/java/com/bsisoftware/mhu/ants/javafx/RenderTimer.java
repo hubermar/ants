@@ -2,7 +2,8 @@ package com.bsisoftware.mhu.ants.javafx;
 
 import java.util.List;
 
-import com.bsisoftware.mhu.ants.javafx.rest.RestClient;
+import com.bsisoftware.mhu.ants.javafx.render.IRenderer;
+import com.bsisoftware.mhu.ants.javafx.render.RenderFactory;
 import com.bsisoftware.mhu.ants.shared.api.entity.GameObject;
 import com.bsisoftware.mhu.ants.shared.api.entity.Terrain;
 import com.bsisoftware.mhu.ants.shared.server.IServer;
@@ -15,14 +16,12 @@ class RenderTimer extends AnimationTimer {
 
 	private final GraphicsContext gc;
 	private final IServer server;
-	private final double fieldSize;
 
 	private long lastHandleSecs;
 
-	public RenderTimer(IServer server, GraphicsContext gc, double fieldSize) {
+	public RenderTimer(IServer server, GraphicsContext gc) {
 		this.server = server;
 		this.gc = gc;
-		this.fieldSize = fieldSize;
 	}
 
 	@Override
@@ -40,10 +39,10 @@ class RenderTimer extends AnimationTimer {
 	}
 
 	private void renderObjects(GraphicsContext gc) {
-//		for (GameObject object : server.getObjects()) {
-//			IRenderer renderer = RenderFactory.getRenderer(object);
-//			renderer.render(gc);
-//		}
+		for (GameObject object : server.getObjects()) {
+			IRenderer renderer = RenderFactory.createRenderer(object);
+			renderer.render(gc);
+		}
 	}
 
 	private void renderMousePosition(GraphicsContext gc) {
@@ -57,35 +56,11 @@ class RenderTimer extends AnimationTimer {
 		// 320, 418);
 	}
 
-	private void renderPlayerPosition(GraphicsContext gc) {
-		// gc.setFill(Color.BLACK);
-		// gc.fillRect(0, 400, 80, 20);
-		// gc.setFill(Color.WHITE);
-		// gc.setFont(new Font("Arial", 18.0));
-		// Point pos = server.getEngineModel().getPlayerPosition();
-		// gc.fillText(String.format("P%03d/%03d", pos.getX(), pos.getY()), 0,
-		// 418);
-	}
-
-	private void renderMen(GraphicsContext gc) {
-		// for (IMan model : server.getEngineModel().getMen()) {
-		// IRenderer renderer = RenderFactory.getRenderer(model);
-		// renderer.render(gc);
-		// }
-	}
-
 	private void renderTerrains(GraphicsContext gc) {
 		List<Terrain> models = server.getLandscape().getTerrains();
 		for (Terrain model : models) {
-			// IRenderer renderer = RenderFactory.getRenderer(model);
-			// renderer.render(gc);
-			double x = model.getX() * fieldSize + 1;
-			double y = model.getY() * fieldSize + 1;
-			double w = fieldSize;
-			double h = fieldSize;
-			gc.clearRect(x, y, w, h);
-			gc.setFill(Color.SANDYBROWN);
-			gc.fillRect(x, y, w, h);
+			IRenderer renderer = RenderFactory.createRenderer(model);
+			renderer.render(gc);
 		}
 	}
 }

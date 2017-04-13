@@ -4,38 +4,27 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
+import com.bsisoftware.mhu.ants.shared.util.Point;
+
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Terrain {
+public class Terrain extends GameObject {
 
 	public enum TerrainType {
 		NEUTRAL
 	}
 
-	@XmlElement(name= "x")
-	private int x;
-	
-	@XmlElement(name= "y")
-	private int y;
-
 	@XmlElement(name= "type")
 	private TerrainType type;
 
-	public int getX() {
-		return x;
+	/**
+	 * for jaxrs 
+	 */
+	Terrain() { }
+	
+	public Terrain(Point position) {
+		super(position);
 	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
+	
 	public TerrainType getType() {
 		return type;
 	}
@@ -46,6 +35,6 @@ public class Terrain {
 
 	@Override
 	public String toString() {
-		return Terrain.class.getSimpleName() + "[x=" + x + " y=" + y + " type=" + type + "]";
+		return Terrain.class.getSimpleName() + "[super=" + super.toString() + " type=" + type + "]";
 	}
 }

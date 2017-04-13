@@ -12,6 +12,8 @@ public final class StaticConfiguration {
 
 	public static final String SERVER_PORT = "serverPort";
 	public static final String FIELD_SIZE = "fieldSize";
+	public static final String NBR_FOOD = "nbrFood";
+	public static final String NBR_ANTS = "nbrAnts";
 
 	private static final Logger LOG = LoggerFactory.getLogger(StaticConfiguration.class);
 	private static final String PROP_FILENAME = "ants.properties";

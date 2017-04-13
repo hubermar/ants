@@ -1,31 +1,36 @@
 package com.bsisoftware.mhu.ants.shared.api.entity;
 
+import javax.xml.bind.annotation.XmlElement;
+
+import com.bsisoftware.mhu.ants.shared.util.Point;
+
 public abstract class GameObject {
 
-	private static final int DEFAULT_SIZE = 1;
+	public static final int DEFAULT_SIZE = 1;
 	
-	private int x;
-	private int y;
+	@XmlElement(name= "position")
+	private Point position;
+	
 	private int width;
 	private int height;
 	
-	protected GameObject(int x, int y) {
-		this(x, y, DEFAULT_SIZE, DEFAULT_SIZE);
+	/**
+	 * for jaxrs 
+	 */
+	protected GameObject() { }
+
+	protected GameObject(Point position) {
+		this(position, DEFAULT_SIZE, DEFAULT_SIZE);
 	}
 
-	protected GameObject(int x, int y, int width, int height) {
-		this.x = x;
-		this.y = y;
+	protected GameObject(Point position, int width, int height) {
+		this.position = position;
 		this.width = width;
 		this.height = height;
 	}
 
-	public final int getX() {
-		return x;
-	}
-
-	public final int getY() {
-		return y;
+	public Point getPosition() {
+		return position;
 	}
 
 	public final int getWidth() {

@@ -4,9 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.bsisoftware.mhu.ants.server.Server;
-import com.bsisoftware.mhu.ants.shared.api.entity.Landscape;
 import com.bsisoftware.mhu.ants.shared.exception.AntsRemoteException;
-import com.bsisoftware.mhu.ants.shared.util.StaticConfiguration;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -19,6 +17,9 @@ import javafx.stage.Stage;
 public class JavaFxApplication extends Application {
 
 	private static final Logger LOG = LoggerFactory.getLogger(JavaFxApplication.class);
+
+	private static final int INITIAL_WIDTH = 1000;
+	private static final int INITIAL_HEIGHT = 1000;
 
 	private double mouseX = 0;
 	private double mouseY = 0;
@@ -37,12 +38,8 @@ public class JavaFxApplication extends Application {
 			Server server = new Server();
 
 			LOG.info("Preparing stage...");
-
-			double fieldSize = StaticConfiguration.getDouble(StaticConfiguration.FIELD_SIZE);
-
-			Landscape landscape = server.getLandscape();
 			
-			Canvas canvas = new Canvas(landscape.getWidth() * fieldSize, landscape.getWidth() * fieldSize);
+			Canvas canvas = new Canvas(INITIAL_WIDTH, INITIAL_HEIGHT);
 			VBox vbox = new VBox(canvas);
 			ScrollPane root = new ScrollPane(vbox);
 
@@ -65,7 +62,7 @@ public class JavaFxApplication extends Application {
 			LOG.info("stage ready.");
 
 			LOG.info("starting renderer ...");
-			renderTimer = new RenderTimer(server, canvas.getGraphicsContext2D(), fieldSize);
+			renderTimer = new RenderTimer(server, canvas.getGraphicsContext2D());
 			renderTimer.start();
 
 			LOG.info("game running.");
