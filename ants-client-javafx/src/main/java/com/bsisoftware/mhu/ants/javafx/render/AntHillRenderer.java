@@ -15,7 +15,7 @@ class AntHillRenderer extends BaseRenderer<AntHill> {
 	public void render(GraphicsContext gc) {
 		int width = getModel().getWidth();
 		int height = getModel().getHeight();
-		Point center = new Point(getModel().getWidth() - width / 2, getModel().getHeight() - height / 2);
+		Point center = new Point(getModel().getPosition().getX() - width / 2, getModel().getPosition().getY() - height / 2);
 		for (int w = 0; w < width; w++) {
 			for (int h = 0; h < height; h++) {
 				Point p = center.translate(new Point(w, h));

@@ -14,6 +14,8 @@ public final class StaticConfiguration {
 	public static final String FIELD_SIZE = "fieldSize";
 	public static final String NBR_FOOD = "nbrFood";
 	public static final String NBR_ANTS = "nbrAnts";
+	public static final String LANDSCAPE_WIDTH = "width";
+	public static final String LANDSCAPE_HEIGHT = "height";
 
 	private static final Logger LOG = LoggerFactory.getLogger(StaticConfiguration.class);
 	private static final String PROP_FILENAME = "ants.properties";

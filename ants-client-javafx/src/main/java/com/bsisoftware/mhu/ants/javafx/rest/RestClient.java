@@ -21,6 +21,7 @@ import com.bsisoftware.mhu.ants.shared.api.entity.GameObject;
 import com.bsisoftware.mhu.ants.shared.api.entity.Landscape;
 import com.bsisoftware.mhu.ants.shared.exception.AntsRemoteException;
 import com.bsisoftware.mhu.ants.shared.exception.ExceptionUtil;
+import com.bsisoftware.mhu.ants.shared.server.IClient;
 import com.bsisoftware.mhu.ants.shared.server.IServer;
 
 public class RestClient implements IServer {
@@ -75,6 +76,18 @@ public class RestClient implements IServer {
 	public List<GameObject> getObjects() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void attach(IClient client) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void detach(IClient client) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
