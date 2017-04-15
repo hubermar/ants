@@ -1,13 +1,13 @@
 package com.bsisoftware.mhu.ants.javafx.render;
 
-import com.bsisoftware.mhu.ants.shared.api.entity.AntHill;
+import com.bsisoftware.mhu.ants.shared.api.entity.Hill;
 import com.bsisoftware.mhu.ants.shared.util.Point;
 
 import javafx.scene.canvas.GraphicsContext;
 
-class AntHillRenderer extends BaseRenderer<AntHill> {
+class HillRenderer extends BaseRenderer<Hill> {
 
-	public AntHillRenderer(AntHill model) {
+	public HillRenderer(Hill model) {
 		super(model, AntsPaint.ANTHILL);
 	}
 

@@ -2,16 +2,20 @@ package com.bsisoftware.mhu.ants.shared.api.entity;
 
 import javax.xml.bind.annotation.XmlElement;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.bsisoftware.mhu.ants.shared.util.Point;
 
-public abstract class GameObject implements PulseReceiver {
+public abstract class GameObject {
+
+	private static final Logger LOG = LoggerFactory.getLogger(GameObject.class);
 
 	public static final int DEFAULT_SIZE = 1;
 	
 	@XmlElement(name= "position")
 	private Point position;
 	
-	private Track track = new Track();
 	private int width = DEFAULT_SIZE;
 	private int height = DEFAULT_SIZE;
 	
@@ -20,6 +24,7 @@ public abstract class GameObject implements PulseReceiver {
 	}
 
 	public void setPosition(Point position) {
+		LOG.debug(this.position + " -> " + position);
 		this.position = position;
 	}
 	
@@ -38,12 +43,6 @@ public abstract class GameObject implements PulseReceiver {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-
-	public Track getTrack() {
-		return track;
-	}
-	
-	public void pulse() { }
 
 	@Override
 	public String toString() {

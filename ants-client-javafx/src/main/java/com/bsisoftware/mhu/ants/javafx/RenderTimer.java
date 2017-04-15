@@ -25,7 +25,7 @@ class RenderTimer extends AnimationTimer {
 
 	@Override
 	public void handle(long currentNanoTime) {
-		long currentSecs = currentNanoTime / 1000000000;
+		long currentSecs = currentNanoTime; // / 1000000000;
 		if (currentSecs - lastHandleSecs > 0) {
 			lastHandleSecs = currentSecs;
 			renderTerrains(gc);

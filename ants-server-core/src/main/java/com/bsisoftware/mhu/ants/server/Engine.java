@@ -10,11 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.bsisoftware.mhu.ants.shared.api.entity.Ant;
-import com.bsisoftware.mhu.ants.shared.api.entity.AntHill;
+import com.bsisoftware.mhu.ants.shared.api.entity.Hill;
 import com.bsisoftware.mhu.ants.shared.api.entity.Food;
 import com.bsisoftware.mhu.ants.shared.api.entity.GameObject;
 import com.bsisoftware.mhu.ants.shared.api.entity.Landscape;
-import com.bsisoftware.mhu.ants.shared.api.entity.PulseReceiver;
+import com.bsisoftware.mhu.ants.shared.api.entity.IPulseReceiver;
 import com.bsisoftware.mhu.ants.shared.api.entity.Terrain;
 import com.bsisoftware.mhu.ants.shared.api.entity.Terrain.TerrainType;
 import com.bsisoftware.mhu.ants.shared.util.Point;
@@ -31,11 +31,11 @@ public final class Engine {
 	private final Landscape landscape = new Landscape();
 	private final List<Ant> ants = new ArrayList<>();
 	private final List<Food> foods = new ArrayList<>();
-	private final List<AntHill> hills = new ArrayList<>();
+	private final List<Hill> hills = new ArrayList<>();
 	
 	private Engine() {
 		initLandscape();
-		AntHill hill = createAnthill();
+		Hill hill = createAnthill();
 		createAnts(hill);
 		placeFoods();
 	}
@@ -46,7 +46,7 @@ public final class Engine {
 			public void run() {
 				pulse();
 			}
-		}, 500, 500);
+		}, 100, 100);
 	}
 
 	public void stop() {
@@ -69,10 +69,10 @@ public final class Engine {
 		landscape.setTerrains(terrains);
 	}
 	
-	private void createAnts(AntHill hill) {
+	private void createAnts(Hill hill) {
 		int nbrAnts = StaticConfiguration.getInt(StaticConfiguration.NBR_ANTS);
 		for (int i = 0; i < nbrAnts; i++) {
-			Ant ant = new Ant(hill);
+			Ant ant = new Ant("Ant" + i, hill);
 			ants.add(ant);
 		}
 	}
@@ -87,9 +87,9 @@ public final class Engine {
 		}
 	}
 
-	private AntHill createAnthill() {
-		Point pos = RandomUtil.createPosition(AntHill.SIZE, AntHill.SIZE);
-		AntHill hill = new AntHill();
+	private Hill createAnthill() {
+		Point pos = RandomUtil.createPosition(Hill.SIZE, Hill.SIZE);
+		Hill hill = new Hill();
 		hill.setPosition(pos);
 		LOG.info("created hill=" + hill);
 		hills.add(hill);
@@ -109,8 +109,26 @@ public final class Engine {
 	}
 
 	private void pulse() {
-		for (PulseReceiver object : getObjects()) {
-			object.pulse();
+		sendPulse();
+		checkCollisions();
+	}
+
+	private void checkCollisions() {
+		for (Ant ant : ants) {
+			for (Food food : foods) {
+				if (food.getPosition().equals(ant.getPosition())) {
+					ant.handleCollisionWith(food);
+				}
+			}
+		}
+	}
+
+	private void sendPulse() {
+		for (GameObject object : getObjects()) {
+			if (object instanceof IPulseReceiver) {
+				IPulseReceiver pr = (IPulseReceiver) object;
+				pr.pulse();
+			}
 		}
 	}
 

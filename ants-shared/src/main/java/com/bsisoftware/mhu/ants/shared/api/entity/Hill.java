@@ -1,10 +1,10 @@
 package com.bsisoftware.mhu.ants.shared.api.entity;
 
-public class AntHill extends GameObject {
+public class Hill extends GameObject {
 
 	public static final int SIZE = 4;
 
-	public AntHill() {
+	public Hill() {
 		setWidth(SIZE);
 		setHeight(SIZE);
 	}

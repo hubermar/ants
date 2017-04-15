@@ -26,6 +26,15 @@ public final class Point {
 		return new Point(this.x + p.x, this.y + p.y);
 	}
 	
+	public Point stepTowards(Point p, int stepSize) {
+		double dx = p.getX() - x;
+		double dy = p.getY() - y;
+		double dir = Math.atan(dy / dx) * 2.0 * Math.PI;
+		double stepX = Math.cos(dir) * stepSize;
+		double stepY = Math.sin(dir) * stepSize;
+		return new Point(Long.valueOf(Math.round(stepX)).intValue(), Long.valueOf(Math.round(stepY)).intValue());
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

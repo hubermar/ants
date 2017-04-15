@@ -9,8 +9,8 @@ public final class RandomUtil {
 	private static final Random R = new Random(System.currentTimeMillis());
 
 	public static Point createPosition(int width, int height) {
-		int x = width + R.nextInt(StaticConfiguration.getInt(StaticConfiguration.LANDSCAPE_WIDTH) - 2 * width);
-		int y = height + R.nextInt(StaticConfiguration.getInt(StaticConfiguration.LANDSCAPE_HEIGHT) - 2 * height);
+		int x = width + R.nextInt(StaticConfiguration.getInt(StaticConfiguration.LANDSCAPE_WIDTH) + 1 - 2 * width);
+		int y = height + R.nextInt(StaticConfiguration.getInt(StaticConfiguration.LANDSCAPE_HEIGHT) + 1 - 2 * height);
 		return new Point(x, y);
 	}
 	
@@ -24,8 +24,8 @@ public final class RandomUtil {
 	 * @return
 	 */
 	public static Point createTranslation(int distance) {
-		int x = -1 + R.nextInt(2);
-		int y = -1 + R.nextInt(2);
+		int x = -1 + R.nextInt(3);
+		int y = -1 + R.nextInt(3);
 		return new Point(x * distance, y * distance);
 	}
 	

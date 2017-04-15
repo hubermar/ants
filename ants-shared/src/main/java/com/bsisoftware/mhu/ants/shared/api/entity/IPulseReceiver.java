@@ -1,6 +1,6 @@
 package com.bsisoftware.mhu.ants.shared.api.entity;
 
-public interface PulseReceiver {
+public interface IPulseReceiver {
 
 	void pulse();
 	
