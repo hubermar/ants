@@ -3,8 +3,8 @@ package com.bsisoftware.mhu.ants.shared.api.entity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bsisoftware.mhu.ants.shared.api.entity.IMovement.Transport;
 import com.bsisoftware.mhu.ants.shared.util.Point;
-import com.bsisoftware.mhu.ants.shared.util.RandomUtil;
 
 public class Ant extends GameObject implements IPulseReceiver, ICollisionHandler {
 
@@ -12,23 +12,15 @@ public class Ant extends GameObject implements IPulseReceiver, ICollisionHandler
 
 	private static int STEP_SIZE = 1;
 	
-	enum Mode {
-		SEARCH,
-		GOTO
-	}
-	
 	private final String name;
 	private final Hill home;
 	
-	private GameObject origin;
-	private GameObject target;
-	private Mode mode;
-
+	private IMovement movement;
+	
 	public Ant(String name, Hill home) {
 		this.name = name;
 		this.home = home;
-		origin = home;
-		mode = Mode.SEARCH;
+		this.movement = new IMovement.Search(home.getPosition());
 		setPosition(home.getPosition());
 	}
 	
@@ -37,43 +29,33 @@ public class Ant extends GameObject implements IPulseReceiver, ICollisionHandler
 	}
 	
 	@Override
-	public void pulse() {
-		switch (mode) {
-		case SEARCH:
-			searchFood();
-			break;
-		case GOTO:
-			goToTarget();
-			break;
-		default:
-			throw new IllegalStateException("illegal mode " + mode);
-		}
+	public void handlePulse() {
+		Point nextPosition = movement.getNextPosition(getPosition(), STEP_SIZE);
+		setPosition(nextPosition);
 	}
 	
-	private void goToTarget() {
-		Point move = getPosition().stepTowards(target.getPosition(), STEP_SIZE);
-		Point newPos = getPosition().translate(move);
-		setPosition(newPos);
-	}
-
-	private void searchFood() {
-		Point tr = RandomUtil.createTranslation(STEP_SIZE);
-		Point newPos = getPosition().translate(tr);
-		setPosition(newPos);
-	}
-
 	@Override
 	public void handleCollisionWith(GameObject o) {
 		if (o instanceof Food) {
 			LOG.info(name + ": found food");
-			origin = o;
-			target = home;
-			mode = Mode.GOTO;
+			Food f = (Food) o;
+			f.take();
+			movement = new IMovement.Transport(o.getPosition(), home.getPosition(), f);
 		} else if (o instanceof Hill) {
 			LOG.info(name + ": arrived at hill");
-			// TODO "unload" payload, search again
-			origin = home;
-			mode = Mode.SEARCH;
+			if (movement instanceof Transport) {
+				Transport t = (Transport) movement;
+				home.add(t.getPayload());
+			}
 		}
+	}
+
+	@Override
+	public String toString() {
+		return Ant.class.getSimpleName() + 
+				"[super=" + super.toString() +
+				" name=" + name + 
+				" home=" + home + 
+				" movement=" + movement + "]";
 	}
 }

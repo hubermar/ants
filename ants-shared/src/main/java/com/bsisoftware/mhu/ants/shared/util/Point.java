@@ -23,7 +23,9 @@ public final class Point {
 	}
 	
 	public Point translate(Point p) {
-		return new Point(this.x + p.x, this.y + p.y);
+		Point newPos = new Point(this.x + p.x, this.y + p.y);
+		// TODO ants should not leave from playground -> limit translation to playground
+		return newPos;
 	}
 	
 	public Point stepTowards(Point p, int stepSize) {

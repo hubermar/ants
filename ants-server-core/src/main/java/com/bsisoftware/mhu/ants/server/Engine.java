@@ -3,8 +3,10 @@ package com.bsisoftware.mhu.ants.server;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -111,6 +113,16 @@ public final class Engine {
 	private void pulse() {
 		sendPulse();
 		checkCollisions();
+		cleanup();
+	}
+
+	private void cleanup() {
+		ListIterator<Food> it = foods.listIterator();
+		while (it.hasNext()) {
+			if (it.next().isEmpty()) {
+				it.remove();
+			}
+		}
 	}
 
 	private void checkCollisions() {
@@ -127,7 +139,7 @@ public final class Engine {
 		for (GameObject object : getObjects()) {
 			if (object instanceof IPulseReceiver) {
 				IPulseReceiver pr = (IPulseReceiver) object;
-				pr.pulse();
+				pr.handlePulse();
 			}
 		}
 	}

@@ -50,8 +50,8 @@ public class JavaFxApplication extends Application implements IClient {
 			scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent e) {
-					System.out.println("mouse scene: (" + e.getSceneX() + ", " + e.getSceneY() + ")");
-					System.out.println("mouse screen: (" + e.getScreenX() + ", " + e.getScreenY() + ")");
+//					System.out.println("mouse scene: (" + e.getSceneX() + ", " + e.getSceneY() + ")");
+//					System.out.println("mouse screen: (" + e.getScreenX() + ", " + e.getScreenY() + ")");
 				}
 			});
 
