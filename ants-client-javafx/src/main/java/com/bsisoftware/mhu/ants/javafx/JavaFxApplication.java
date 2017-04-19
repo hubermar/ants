@@ -37,7 +37,6 @@ public class JavaFxApplication extends Application implements IClient {
 			LOG.info("Preparing stage...");
 			// primaryStage.setFullScreen(true);
 			primaryStage.setTitle("Ants");
-
 			
 			Canvas canvas = new Canvas(INITIAL_WIDTH, INITIAL_HEIGHT);
 			VBox vbox = new VBox(canvas);

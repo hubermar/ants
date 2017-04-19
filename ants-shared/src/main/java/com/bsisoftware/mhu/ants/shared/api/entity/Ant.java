@@ -37,17 +37,39 @@ public class Ant extends GameObject implements IPulseReceiver, ICollisionHandler
 	@Override
 	public void handleCollisionWith(GameObject o) {
 		if (o instanceof Food) {
-			LOG.info(name + ": found food");
-			Food f = (Food) o;
-			f.take();
-			movement = new IMovement.Transport(o.getPosition(), home.getPosition(), f);
+			handleFood((Food) o);
 		} else if (o instanceof Hill) {
-			LOG.info(name + ": arrived at hill");
-			if (movement instanceof Transport) {
-				Transport t = (Transport) movement;
-				home.add(t.getPayload());
-			}
+			handleHill((Hill) o);
+		} else if (o instanceof Ant) {
+			handleAnt((Ant) o);
 		}
+	}
+
+	private void handleAnt(Ant a) {
+		if (a.home != home) {
+			fight(a);
+		}
+	}
+
+	private void handleHill(Hill h) {
+		// TODO handle hostile hill
+		if (movement instanceof Transport) {
+			Transport t = (Transport) movement;
+			home.add(t.getPayload());
+			LOG.info(name + ": delivered payload " + t.getPayload());
+		}
+		movement = new IMovement.Search(home.getPosition());
+	}
+
+	private void handleFood(Food f) {
+		LOG.info(name + ": found food");
+		f.take();
+		movement = new IMovement.Transport(home.getPosition(), f);
+	}
+
+	private void fight(Ant a) {
+		LOG.info(name + " encounters " + a.name + " -> fight!!!");		
+		// TODO implement fight
 	}
 
 	@Override

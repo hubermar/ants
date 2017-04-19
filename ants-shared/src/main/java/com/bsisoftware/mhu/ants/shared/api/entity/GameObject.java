@@ -43,6 +43,10 @@ public abstract class GameObject {
 	public void setHeight(int height) {
 		this.height = height;
 	}
+	
+	public boolean intersects(Point p) {
+		return Math.abs(p.getX() - position.getX()) <= width && Math.abs(p.getY() - position.getY()) <= height;
+	}
 
 	@Override
 	public String toString() {

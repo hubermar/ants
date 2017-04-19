@@ -54,8 +54,8 @@ public interface IMovement {
 	public static class Transport extends Travel {
 		private final Food payload;
 
-		public Transport(Point origin, Point target, Food payload) {
-			super(origin, target);
+		public Transport(Point target, Food payload) {
+			super(payload.getPosition(), target);
 			this.payload = payload;
 		}
 

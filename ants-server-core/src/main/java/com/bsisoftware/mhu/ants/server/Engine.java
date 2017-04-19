@@ -6,17 +6,16 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.bsisoftware.mhu.ants.shared.api.entity.Ant;
-import com.bsisoftware.mhu.ants.shared.api.entity.Hill;
 import com.bsisoftware.mhu.ants.shared.api.entity.Food;
 import com.bsisoftware.mhu.ants.shared.api.entity.GameObject;
-import com.bsisoftware.mhu.ants.shared.api.entity.Landscape;
+import com.bsisoftware.mhu.ants.shared.api.entity.Hill;
 import com.bsisoftware.mhu.ants.shared.api.entity.IPulseReceiver;
+import com.bsisoftware.mhu.ants.shared.api.entity.Landscape;
 import com.bsisoftware.mhu.ants.shared.api.entity.Terrain;
 import com.bsisoftware.mhu.ants.shared.api.entity.Terrain.TerrainType;
 import com.bsisoftware.mhu.ants.shared.util.Point;
@@ -25,11 +24,13 @@ import com.bsisoftware.mhu.ants.shared.util.StaticConfiguration;
 
 public final class Engine {
 	
+	private static final int PULSE_INTERVAL = 300;
+
 	private static final Logger LOG = LoggerFactory.getLogger(Engine.class);
 	
 	public static Engine INSTANCE = new Engine();
 
-	private final Timer timer = new Timer();
+	private final Timer timer = new Timer(Engine.class.getSimpleName(), true);
 	private final Landscape landscape = new Landscape();
 	private final List<Ant> ants = new ArrayList<>();
 	private final List<Food> foods = new ArrayList<>();
@@ -48,7 +49,7 @@ public final class Engine {
 			public void run() {
 				pulse();
 			}
-		}, 100, 100);
+		}, PULSE_INTERVAL, PULSE_INTERVAL);
 	}
 
 	public void stop() {
@@ -90,7 +91,8 @@ public final class Engine {
 	}
 
 	private Hill createAnthill() {
-		Point pos = RandomUtil.createPosition(Hill.SIZE, Hill.SIZE);
+//		Point pos = RandomUtil.createPosition(Hill.SIZE, Hill.SIZE);
+		Point pos = new Point(landscape.getWidth() / 2, landscape.getHeight() / 2);
 		Hill hill = new Hill();
 		hill.setPosition(pos);
 		LOG.info("created hill=" + hill);
@@ -126,10 +128,10 @@ public final class Engine {
 	}
 
 	private void checkCollisions() {
-		for (Ant ant : ants) {
-			for (Food food : foods) {
-				if (food.getPosition().equals(ant.getPosition())) {
-					ant.handleCollisionWith(food);
+		for (GameObject o : getObjects()) {
+			for (Ant ant : ants) {
+				if (o != ant && o.intersects(ant.getPosition())) {
+					ant.handleCollisionWith(o);
 				}
 			}
 		}
