@@ -1,10 +1,10 @@
 package com.bsisoftware.mhu.ants.javafx.render;
 
-import com.bsisoftware.mhu.ants.shared.api.entity.Terrain;
+import com.bsisoftware.mhu.ants.shared.api.entity.ITerrain;
 
-class TerrainRenderer extends BaseRenderer<Terrain> {
+class TerrainRenderer extends BaseRenderer<ITerrain> {
 
-	public TerrainRenderer(Terrain model) {
+	public TerrainRenderer(ITerrain model) {
 		super(model, AntsPaint.TERRAIN_NEUTRAL);
 	}	
 }

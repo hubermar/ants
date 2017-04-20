@@ -1,9 +1,13 @@
-package com.bsisoftware.mhu.ants.shared.api.entity;
+package com.bsisoftware.mhu.ants.server.api;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bsisoftware.mhu.ants.shared.api.entity.IMovement.Transport;
+import com.bsisoftware.mhu.ants.server.ICollisionHandler;
+import com.bsisoftware.mhu.ants.server.IMovement;
+import com.bsisoftware.mhu.ants.server.IPulseReceiver;
+import com.bsisoftware.mhu.ants.server.IMovement.Transport;
+import com.bsisoftware.mhu.ants.shared.api.entity.IGameObject;
 import com.bsisoftware.mhu.ants.shared.util.Point;
 
 public class Ant extends GameObject implements IPulseReceiver, ICollisionHandler {
@@ -35,7 +39,7 @@ public class Ant extends GameObject implements IPulseReceiver, ICollisionHandler
 	}
 	
 	@Override
-	public void handleCollisionWith(GameObject o) {
+	public void handleCollisionWith(IGameObject o) {
 		if (o instanceof Food) {
 			handleFood((Food) o);
 		} else if (o instanceof Hill) {

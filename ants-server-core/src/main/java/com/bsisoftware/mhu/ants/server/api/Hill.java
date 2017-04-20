@@ -1,4 +1,4 @@
-package com.bsisoftware.mhu.ants.shared.api.entity;
+package com.bsisoftware.mhu.ants.server.api;
 
 import java.util.ArrayList;
 import java.util.List;

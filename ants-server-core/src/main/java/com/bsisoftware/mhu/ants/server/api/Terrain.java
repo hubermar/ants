@@ -1,19 +1,18 @@
-package com.bsisoftware.mhu.ants.shared.api.entity;
+package com.bsisoftware.mhu.ants.server.api;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
-@XmlAccessorType(XmlAccessType.FIELD)
-public class Terrain extends GameObject {
+import com.bsisoftware.mhu.ants.shared.api.entity.ITerrain;
 
-	public enum TerrainType {
-		NEUTRAL
-	}
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Terrain extends GameObject implements ITerrain {
 
 	@XmlElement(name= "type")
 	private TerrainType type;
 
+	@Override
 	public TerrainType getType() {
 		return type;
 	}

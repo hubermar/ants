@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.bsisoftware.mhu.ants.javafx.render.IRenderer;
 import com.bsisoftware.mhu.ants.javafx.render.RenderFactory;
-import com.bsisoftware.mhu.ants.shared.api.entity.GameObject;
-import com.bsisoftware.mhu.ants.shared.api.entity.Terrain;
+import com.bsisoftware.mhu.ants.shared.api.entity.IGameObject;
+import com.bsisoftware.mhu.ants.shared.api.entity.ITerrain;
 import com.bsisoftware.mhu.ants.shared.server.IServer;
 
 import javafx.animation.AnimationTimer;
@@ -37,15 +37,15 @@ class RenderTimer extends AnimationTimer {
 	}
 
 	private void renderObjects(GraphicsContext gc) {
-		for (GameObject object : server.getObjects()) {
+		for (IGameObject object : server.getObjects()) {
 			IRenderer renderer = RenderFactory.createRenderer(object);
 			renderer.render(gc);
 		}
 	}
 
 	private void renderTerrains(GraphicsContext gc) {
-		List<Terrain> models = server.getLandscape().getTerrains();
-		for (Terrain model : models) {
+		List<ITerrain> models = server.getLandscape().getTerrains();
+		for (ITerrain model : models) {
 			IRenderer renderer = RenderFactory.createRenderer(model);
 			renderer.render(gc);
 		}

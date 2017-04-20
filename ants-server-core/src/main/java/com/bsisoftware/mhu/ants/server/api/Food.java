@@ -1,4 +1,4 @@
-package com.bsisoftware.mhu.ants.shared.api.entity;
+package com.bsisoftware.mhu.ants.server.api;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

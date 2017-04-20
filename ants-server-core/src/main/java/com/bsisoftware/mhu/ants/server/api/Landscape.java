@@ -1,4 +1,4 @@
-package com.bsisoftware.mhu.ants.shared.api.entity;
+package com.bsisoftware.mhu.ants.server.api;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,9 +9,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.bsisoftware.mhu.ants.shared.api.entity.ILandscape;
+import com.bsisoftware.mhu.ants.shared.api.entity.ITerrain;
+
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Landscape {
+public class Landscape implements ILandscape {
 
 	@XmlElement(name="width")
 	private int width;
@@ -22,7 +25,8 @@ public class Landscape {
 	@XmlElement(name="terrains")
 	private List<Terrain> terrains = new ArrayList<>();
 	
-	public List<Terrain> getTerrains() {
+	@Override
+	public List<ITerrain> getTerrains() {
 		return Collections.unmodifiableList(terrains);
 	}
 	
@@ -30,14 +34,17 @@ public class Landscape {
 		this.terrains = terrains;
 	}
 
+	@Override
 	public int getHeight() {
 		return height;
 	}
 	
+	@Override
 	public void setHeight(int height) {
 		this.height = height;
 	}
 
+	@Override
 	public int getWidth() {
 		return width;
 	}

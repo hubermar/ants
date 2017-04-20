@@ -1,6 +1,6 @@
 package com.bsisoftware.mhu.ants.javafx.render;
 
-import com.bsisoftware.mhu.ants.shared.api.entity.Hill;
+import com.bsisoftware.mhu.ants.server.api.Hill;
 import com.bsisoftware.mhu.ants.shared.util.Point;
 
 import javafx.scene.canvas.GraphicsContext;

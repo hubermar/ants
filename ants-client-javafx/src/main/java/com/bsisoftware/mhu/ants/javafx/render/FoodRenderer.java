@@ -1,6 +1,6 @@
 package com.bsisoftware.mhu.ants.javafx.render;
 
-import com.bsisoftware.mhu.ants.shared.api.entity.Food;
+import com.bsisoftware.mhu.ants.server.api.Food;
 
 public class FoodRenderer extends BaseRenderer<Food> {
 

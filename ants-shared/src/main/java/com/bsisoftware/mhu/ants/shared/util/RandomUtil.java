@@ -2,7 +2,7 @@ package com.bsisoftware.mhu.ants.shared.util;
 
 import java.util.Random;
 
-import com.bsisoftware.mhu.ants.shared.api.entity.GameObject;
+import com.bsisoftware.mhu.ants.shared.api.entity.IGameObject;
 
 public final class RandomUtil {
 
@@ -15,7 +15,7 @@ public final class RandomUtil {
 	}
 	
 	public static Point createPosition() {
-		return createPosition(GameObject.DEFAULT_SIZE, GameObject.DEFAULT_SIZE);
+		return createPosition(IGameObject.DEFAULT_SIZE, IGameObject.DEFAULT_SIZE);
 	}
 
 	/**

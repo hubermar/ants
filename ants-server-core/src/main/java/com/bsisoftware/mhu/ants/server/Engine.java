@@ -10,23 +10,24 @@ import java.util.TimerTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bsisoftware.mhu.ants.shared.api.entity.Ant;
-import com.bsisoftware.mhu.ants.shared.api.entity.Food;
-import com.bsisoftware.mhu.ants.shared.api.entity.GameObject;
-import com.bsisoftware.mhu.ants.shared.api.entity.Hill;
-import com.bsisoftware.mhu.ants.shared.api.entity.IPulseReceiver;
-import com.bsisoftware.mhu.ants.shared.api.entity.Landscape;
-import com.bsisoftware.mhu.ants.shared.api.entity.Terrain;
-import com.bsisoftware.mhu.ants.shared.api.entity.Terrain.TerrainType;
+import com.bsisoftware.mhu.ants.server.api.Ant;
+import com.bsisoftware.mhu.ants.server.api.Food;
+import com.bsisoftware.mhu.ants.server.api.GameObject;
+import com.bsisoftware.mhu.ants.server.api.Hill;
+import com.bsisoftware.mhu.ants.server.api.Landscape;
+import com.bsisoftware.mhu.ants.server.api.Terrain;
+import com.bsisoftware.mhu.ants.shared.api.entity.IGameObject;
+import com.bsisoftware.mhu.ants.shared.api.entity.ILandscape;
+import com.bsisoftware.mhu.ants.shared.api.entity.ITerrain;
 import com.bsisoftware.mhu.ants.shared.util.Point;
 import com.bsisoftware.mhu.ants.shared.util.RandomUtil;
 import com.bsisoftware.mhu.ants.shared.util.StaticConfiguration;
 
 public final class Engine {
 	
-	private static final int PULSE_INTERVAL = 300;
-
 	private static final Logger LOG = LoggerFactory.getLogger(Engine.class);
+
+	private static final int PULSE_INTERVAL = 300;
 	
 	public static Engine INSTANCE = new Engine();
 
@@ -65,7 +66,7 @@ public final class Engine {
 			for (int y = 0; y < landscape.getHeight(); y++) {
 				Terrain terrain = new Terrain();
 				terrain.setPosition(new Point(x, y));
-				terrain.setType(TerrainType.NEUTRAL);
+				terrain.setType(ITerrain.TerrainType.NEUTRAL);
 				terrains.add(terrain);
 			}			
 		}
@@ -100,11 +101,11 @@ public final class Engine {
 		return hill;
 	}
 
-	public Landscape getLandscape() {
+	public ILandscape getLandscape() {
 		return landscape;
 	}
 	
-	public List<GameObject> getObjects() {
+	public List<IGameObject> getObjects() {
 		List<GameObject> objects = new ArrayList<>();
 		objects.addAll(hills);
 		objects.addAll(foods);
@@ -128,7 +129,7 @@ public final class Engine {
 	}
 
 	private void checkCollisions() {
-		for (GameObject o : getObjects()) {
+		for (IGameObject o : getObjects()) {
 			for (Ant ant : ants) {
 				if (o != ant && o.intersects(ant.getPosition())) {
 					ant.handleCollisionWith(o);
@@ -138,7 +139,7 @@ public final class Engine {
 	}
 
 	private void sendPulse() {
-		for (GameObject object : getObjects()) {
+		for (IGameObject object : getObjects()) {
 			if (object instanceof IPulseReceiver) {
 				IPulseReceiver pr = (IPulseReceiver) object;
 				pr.handlePulse();

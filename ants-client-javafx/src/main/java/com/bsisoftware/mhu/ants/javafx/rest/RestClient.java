@@ -15,10 +15,11 @@ import org.glassfish.jersey.logging.LoggingFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bsisoftware.mhu.ants.server.api.Landscape;
 import com.bsisoftware.mhu.ants.shared.api.RestAPI;
 import com.bsisoftware.mhu.ants.shared.api.entity.ApiError;
-import com.bsisoftware.mhu.ants.shared.api.entity.GameObject;
-import com.bsisoftware.mhu.ants.shared.api.entity.Landscape;
+import com.bsisoftware.mhu.ants.shared.api.entity.IGameObject;
+import com.bsisoftware.mhu.ants.shared.api.entity.ILandscape;
 import com.bsisoftware.mhu.ants.shared.exception.AntsRemoteException;
 import com.bsisoftware.mhu.ants.shared.exception.ExceptionUtil;
 import com.bsisoftware.mhu.ants.shared.server.IClient;
@@ -38,7 +39,7 @@ public class RestClient implements IServer {
 		target = client.target(baseUri);
 	}
 
-	public Landscape getLandscape() {
+	public ILandscape getLandscape() {
 		Invocation invocation = target.
 				path(RestAPI.PATH_LANDSCAPE).
 				request(MediaType.APPLICATION_JSON_TYPE).
@@ -73,7 +74,7 @@ public class RestClient implements IServer {
 	}
 
 	@Override
-	public List<GameObject> getObjects() {
+	public List<IGameObject> getObjects() {
 		// TODO Auto-generated method stub
 		return null;
 	}

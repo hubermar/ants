@@ -1,5 +1,6 @@
-package com.bsisoftware.mhu.ants.shared.api.entity;
+package com.bsisoftware.mhu.ants.server;
 
+import com.bsisoftware.mhu.ants.server.api.Food;
 import com.bsisoftware.mhu.ants.shared.util.Point;
 import com.bsisoftware.mhu.ants.shared.util.RandomUtil;
 
