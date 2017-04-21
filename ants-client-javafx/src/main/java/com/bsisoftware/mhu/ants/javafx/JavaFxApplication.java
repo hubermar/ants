@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import com.bsisoftware.mhu.ants.server.Server;
 import com.bsisoftware.mhu.ants.shared.exception.AntsRemoteException;
-import com.bsisoftware.mhu.ants.shared.server.IClient;
-import com.bsisoftware.mhu.ants.shared.server.IServer;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -18,21 +16,21 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class JavaFxApplication extends Application implements IClient {
+public class JavaFxApplication extends Application {
 
 	private static final Logger LOG = LoggerFactory.getLogger(JavaFxApplication.class);
 
 	private static final int INITIAL_WIDTH = 1000;
 	private static final int INITIAL_HEIGHT = 1000;
 
-	private final IServer server = new Server();
+	private final Server server = new Server();
 	private RenderTimer renderTimer;
 
 	public JavaFxApplication() { }
 
 	@Override
 	public void start(Stage primaryStage) {
-		server.attach(this);
+		server.start();
 		try {
 			LOG.info("Preparing stage...");
 			// primaryStage.setFullScreen(true);
@@ -74,7 +72,7 @@ public class JavaFxApplication extends Application implements IClient {
 		LOG.info("stopping renderer...");
 		renderTimer.stop();
 		LOG.info("detaching from server...");
-		server.detach(this);
+		server.stop();
 		LOG.info("stopping application...");
 		super.stop();
 		LOG.info("end of application.");

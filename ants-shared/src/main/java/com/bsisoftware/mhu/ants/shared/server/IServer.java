@@ -8,9 +8,7 @@ import com.bsisoftware.mhu.ants.shared.api.entity.ILandscape;
 public interface IServer {
 
 	ILandscape getLandscape();
-	List<IGameObject> getObjects();
 
-	void attach(IClient client);
-	void detach(IClient client);
+	List<IGameObject> getObjects();
 
 }
