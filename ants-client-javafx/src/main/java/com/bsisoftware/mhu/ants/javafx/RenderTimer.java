@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.bsisoftware.mhu.ants.javafx.render.IRenderer;
 import com.bsisoftware.mhu.ants.javafx.render.RenderFactory;
-import com.bsisoftware.mhu.ants.shared.api.entity.IGameObject;
-import com.bsisoftware.mhu.ants.shared.api.entity.ITerrain;
+import com.bsisoftware.mhu.ants.shared.api.IGameObject;
+import com.bsisoftware.mhu.ants.shared.api.ITerrain;
 import com.bsisoftware.mhu.ants.shared.server.IServer;
 
 import javafx.animation.AnimationTimer;

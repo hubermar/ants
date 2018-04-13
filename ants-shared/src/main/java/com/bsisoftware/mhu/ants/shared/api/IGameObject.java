@@ -1,4 +1,4 @@
-package com.bsisoftware.mhu.ants.shared.api.entity;
+package com.bsisoftware.mhu.ants.shared.api;
 
 import com.bsisoftware.mhu.ants.shared.util.Point;
 

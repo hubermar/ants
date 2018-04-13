@@ -1,9 +1,8 @@
-package com.bsisoftware.mhu.ants.shared.api;
+package com.bsisoftware.mhu.ants.server.rest;
 
 public interface RestAPI {
 
-	public static final String CONTEXT = "/ants";
-	public static final String API = "/api/v1";
+	public static final String BASE = "/api";
 
 	public static final String PATH_CONFIGS = "/configurations";
 	public static final String PATH_LANDSCAPE = "/landscape";

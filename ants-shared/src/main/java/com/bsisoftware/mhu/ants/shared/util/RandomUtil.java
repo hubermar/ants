@@ -2,7 +2,7 @@ package com.bsisoftware.mhu.ants.shared.util;
 
 import java.util.Random;
 
-import com.bsisoftware.mhu.ants.shared.api.entity.IGameObject;
+import com.bsisoftware.mhu.ants.shared.api.IGameObject;
 
 public final class RandomUtil {
 

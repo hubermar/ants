@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bsisoftware.mhu.ants.shared.api.entity.IGameObject;
+import com.bsisoftware.mhu.ants.shared.api.IGameObject;
 import com.bsisoftware.mhu.ants.shared.util.Point;
 
 public abstract class GameObject implements IGameObject {

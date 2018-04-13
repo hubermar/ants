@@ -1,6 +1,6 @@
 package com.bsisoftware.mhu.ants.javafx.render;
 
-import com.bsisoftware.mhu.ants.shared.api.entity.ITerrain;
+import com.bsisoftware.mhu.ants.shared.api.ITerrain;
 
 class TerrainRenderer extends BaseRenderer<ITerrain> {
 

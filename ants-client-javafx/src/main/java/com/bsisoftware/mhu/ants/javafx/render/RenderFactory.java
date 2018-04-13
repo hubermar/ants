@@ -4,8 +4,8 @@ import com.bsisoftware.mhu.ants.server.api.Ant;
 import com.bsisoftware.mhu.ants.server.api.Food;
 import com.bsisoftware.mhu.ants.server.api.Hill;
 import com.bsisoftware.mhu.ants.server.api.Terrain;
-import com.bsisoftware.mhu.ants.shared.api.entity.IGameObject;
-import com.bsisoftware.mhu.ants.shared.api.entity.ITerrain;
+import com.bsisoftware.mhu.ants.shared.api.IGameObject;
+import com.bsisoftware.mhu.ants.shared.api.ITerrain;
 
 public final class RenderFactory {
 

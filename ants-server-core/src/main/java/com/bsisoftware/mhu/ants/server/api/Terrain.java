@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
-import com.bsisoftware.mhu.ants.shared.api.entity.ITerrain;
+import com.bsisoftware.mhu.ants.shared.api.ITerrain;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Terrain extends GameObject implements ITerrain {

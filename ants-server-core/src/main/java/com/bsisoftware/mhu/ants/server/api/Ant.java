@@ -7,7 +7,7 @@ import com.bsisoftware.mhu.ants.server.ICollisionHandler;
 import com.bsisoftware.mhu.ants.server.IMovement;
 import com.bsisoftware.mhu.ants.server.IPulseReceiver;
 import com.bsisoftware.mhu.ants.server.IMovement.Transport;
-import com.bsisoftware.mhu.ants.shared.api.entity.IGameObject;
+import com.bsisoftware.mhu.ants.shared.api.IGameObject;
 import com.bsisoftware.mhu.ants.shared.util.Point;
 
 public class Ant extends GameObject implements IPulseReceiver, ICollisionHandler {

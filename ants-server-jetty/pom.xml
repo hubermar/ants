@@ -9,8 +9,11 @@
 		<relativePath>../ants-parent</relativePath>
 	</parent>
 
-	<artifactId>server-core</artifactId>
-	<packaging>war</packaging>
+	<artifactId>jetty</artifactId>
+
+	<properties>
+		<jetty.version>9.4.3.v20170317</jetty.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -19,12 +22,24 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>org.glassfish.jersey.core</groupId>
-			<artifactId>jersey-server</artifactId>
+			<groupId>com.bsisoftware.mhu.ants</groupId>
+			<artifactId>server-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-moxy</artifactId>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-server</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlet</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.eclipse.jetty</groupId>
+		    <artifactId>jetty-webapp</artifactId>
+		    <version>${jetty.version}</version>
 		</dependency>
  	</dependencies>
 </project>

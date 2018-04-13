@@ -2,8 +2,8 @@ package com.bsisoftware.mhu.ants.shared.server;
 
 import java.util.List;
 
-import com.bsisoftware.mhu.ants.shared.api.entity.IGameObject;
-import com.bsisoftware.mhu.ants.shared.api.entity.ILandscape;
+import com.bsisoftware.mhu.ants.shared.api.IGameObject;
+import com.bsisoftware.mhu.ants.shared.api.ILandscape;
 
 public interface IServer {
 

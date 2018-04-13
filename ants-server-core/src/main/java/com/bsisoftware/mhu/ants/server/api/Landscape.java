@@ -9,8 +9,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.bsisoftware.mhu.ants.shared.api.entity.ILandscape;
-import com.bsisoftware.mhu.ants.shared.api.entity.ITerrain;
+import com.bsisoftware.mhu.ants.shared.api.ILandscape;
+import com.bsisoftware.mhu.ants.shared.api.ITerrain;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -22,7 +22,7 @@ public class Landscape implements ILandscape {
 	@XmlElement(name="height")
 	private int height;
 
-	@XmlElement(name="terrains")
+	@XmlElement(name="terrains", type=Terrain.class)
 	private List<Terrain> terrains = new ArrayList<>();
 	
 	@Override
