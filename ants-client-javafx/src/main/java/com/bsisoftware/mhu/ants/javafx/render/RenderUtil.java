@@ -16,4 +16,8 @@ public final class RenderUtil {
 	public static final Point toScreen(Point p) {
 		return new Point(p.getX() * FIELD_SIZE, p.getY() * FIELD_SIZE);
 	}
+
+	public static final Point fromScreen(Point p) {
+		return new Point(p.getX() / FIELD_SIZE, p.getY() / FIELD_SIZE);
+	}
 }

@@ -1,6 +1,6 @@
 package com.bsisoftware.mhu.ants.server;
 
-import com.bsisoftware.mhu.ants.server.api.Food;
+import com.bsisoftware.mhu.ants.shared.api.IGameObject;
 import com.bsisoftware.mhu.ants.shared.util.Point;
 import com.bsisoftware.mhu.ants.shared.util.RandomUtil;
 
@@ -53,14 +53,14 @@ public interface IMovement {
 	}
 	
 	public static class Transport extends Travel {
-		private final Food payload;
+		private final IGameObject payload;
 
-		public Transport(Point target, Food payload) {
+		public Transport(Point target, IGameObject payload) {
 			super(payload.getPosition(), target);
 			this.payload = payload;
 		}
 
-		public Food getPayload() {
+		public IGameObject getPayload() {
 			return payload;
 		}
 	}

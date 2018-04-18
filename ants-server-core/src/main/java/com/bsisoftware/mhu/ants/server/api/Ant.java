@@ -32,6 +32,13 @@ public class Ant extends GameObject implements IPulseReceiver, ICollisionHandler
 		return name;
 	}
 	
+	public IGameObject getPayload() {
+		if (movement instanceof IMovement.Transport) {
+			return ((IMovement.Transport) movement).getPayload();
+		}
+		return null;
+	}
+	
 	@Override
 	public void handlePulse() {
 		Point nextPosition = movement.getNextPosition(getPosition(), STEP_SIZE);
@@ -67,8 +74,7 @@ public class Ant extends GameObject implements IPulseReceiver, ICollisionHandler
 
 	private void handleFood(Food f) {
 		LOG.info(name + ": found food");
-		f.take();
-		movement = new IMovement.Transport(home.getPosition(), f);
+		movement = new IMovement.Transport(home.getPosition(), f.take());
 	}
 
 	private void fight(Ant a) {

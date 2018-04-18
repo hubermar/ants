@@ -3,8 +3,10 @@ package com.bsisoftware.mhu.ants.javafx;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bsisoftware.mhu.ants.javafx.render.RenderUtil;
 import com.bsisoftware.mhu.ants.server.Server;
 import com.bsisoftware.mhu.ants.shared.exception.AntsRemoteException;
+import com.bsisoftware.mhu.ants.shared.util.Point;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -14,6 +16,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class JavaFxApplication extends Application {
@@ -36,7 +39,7 @@ public class JavaFxApplication extends Application {
 			// primaryStage.setFullScreen(true);
 			primaryStage.setTitle("Ants");
 			
-			Canvas canvas = new Canvas(INITIAL_WIDTH, INITIAL_HEIGHT);
+			final Canvas canvas = new Canvas(INITIAL_WIDTH, INITIAL_HEIGHT);
 			VBox vbox = new VBox(canvas);
 			ScrollPane root = new ScrollPane(vbox);
 
@@ -49,6 +52,9 @@ public class JavaFxApplication extends Application {
 				public void handle(MouseEvent e) {
 //					System.out.println("mouse scene: (" + e.getSceneX() + ", " + e.getSceneY() + ")");
 //					System.out.println("mouse screen: (" + e.getScreenX() + ", " + e.getScreenY() + ")");
+					System.out.println(RenderUtil.fromScreen(new Point(Double.valueOf(e.getSceneX()).intValue(), Double.valueOf(e.getSceneY()).intValue())));
+					canvas.getGraphicsContext2D().setFill(Color.WHITESMOKE);
+					canvas.getGraphicsContext2D().fillText("(" + e.getSceneX() + "," + e.getSceneY() + ")", 400, 400);
 				}
 			});
 

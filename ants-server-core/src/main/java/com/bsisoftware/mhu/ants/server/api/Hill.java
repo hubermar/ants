@@ -6,6 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bsisoftware.mhu.ants.shared.api.IGameObject;
+
 public class Hill extends GameObject {
 
 	private static Logger LOG = LoggerFactory.getLogger(Hill.class);
@@ -19,8 +21,10 @@ public class Hill extends GameObject {
 		setHeight(SIZE);
 	}
 
-	public void add(Food food) {
-		stock.add(food);
-		LOG.info("Food added, new stock: " + stock.size());
+	public void add(IGameObject payload) {
+		if (payload instanceof Food) {
+			stock.add((Food) payload);
+			LOG.info("Food added, new stock: " + stock.size());
+		}
 	}
 }

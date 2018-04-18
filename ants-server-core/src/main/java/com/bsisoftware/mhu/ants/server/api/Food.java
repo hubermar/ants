@@ -7,11 +7,16 @@ public class Food extends GameObject {
 
 	private static final Logger LOG = LoggerFactory.getLogger(Food.class);
 	
-	private int amount = 3;
+	private int amount;
 	
-	public void take() {
+	public Food(int amount) {
+		this.amount = amount;
+	}
+	
+	public Food take() {
 		amount--;
 		LOG.info("new amount: " + amount);
+		return new Food(1);
 	}
 	
 	public boolean isEmpty() {

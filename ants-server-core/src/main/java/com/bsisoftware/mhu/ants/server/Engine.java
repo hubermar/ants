@@ -85,7 +85,7 @@ public final class Engine {
 		int nbrFood = StaticConfiguration.getInt(StaticConfiguration.NBR_FOOD);
 		for (int i = 0; i < nbrFood; i++) {
 			Point pos = RandomUtil.createPosition();
-			Food food = new Food();
+			Food food = new Food(3);
 			food.setPosition(pos);
 			foods.add(food);
 		}
